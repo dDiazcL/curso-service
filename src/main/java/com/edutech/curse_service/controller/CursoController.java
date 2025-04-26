@@ -9,12 +9,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.edutech.curse_service.model.Curso;
 import com.edutech.curse_service.service.CursoService;
 
 @RestController
+@RequestMapping("/api/cursos")
 public class CursoController {
     @Autowired
     private CursoService cursoService;
