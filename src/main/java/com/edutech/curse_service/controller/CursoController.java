@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.edutech.curse_service.model.Curso;
 import com.edutech.curse_service.service.CursoService;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/api/cursos")
 public class CursoController {
@@ -38,7 +40,7 @@ public class CursoController {
     }
 
     @PostMapping
-    public Curso createCurso(@RequestBody Curso curso) {
+    public Curso createCurso(@Valid @RequestBody Curso curso) {
         return  cursoService.createCurso(curso);
     }
 
