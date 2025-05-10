@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 import com.edutech.curse_service.model.Curso;
 import com.edutech.curse_service.repository.CursoRepository;
 
+import jakarta.persistence.EntityNotFoundException;
+
 @Service
 
 public class CursoService {
@@ -33,6 +35,20 @@ public class CursoService {
 
     public void deleteCurso(Long id) {
         cursoRepository.deleteById(id);
+    }
+
+    public Curso updateCurso(Long id, Curso cursoDetails) {
+        Curso curso = cursoRepository.findById(id)
+            .orElseThrow(() -> new EntityNotFoundException("Curso no encontrado con id: "+ id));
+
+        curso.setNombreCurso(cursoDetails.getNombreCurso());
+        curso.setDescripcion(cursoDetails.getDescripcion());
+        curso.setModalidad(cursoDetails.getModalidad());
+        curso.setCupoMaximo(cursoDetails.getCupoMaximo());
+        curso.setIdProfesor(curso.getIdProfesor());
+        curso.setIdMateria(curso.getIdMateria());
+
+        return cursoRepository.save(curso);
     }
 
 }

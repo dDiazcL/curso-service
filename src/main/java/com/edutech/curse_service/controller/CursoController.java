@@ -16,6 +16,8 @@ import com.edutech.curse_service.model.Curso;
 import com.edutech.curse_service.service.CursoService;
 
 import jakarta.validation.Valid;
+import org.springframework.web.bind.annotation.PutMapping;
+
 
 @RestController
 @RequestMapping("/api/cursos")
@@ -49,4 +51,11 @@ public class CursoController {
         cursoService.deleteCurso(id);
         return ResponseEntity.noContent().build();
     }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Curso> updateCurso(@PathVariable Long id, @Valid @RequestBody Curso curso) {
+        Curso updatedCurso = cursoService.updateCurso(id, curso);
+        return ResponseEntity.ok(updatedCurso);
+     }
+
 }
